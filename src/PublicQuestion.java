@@ -1,12 +1,12 @@
-public class PublicQuestion extends Message{
+public class PublicQuestion{
     private final String id;
     private final String question;
     private final String answer;
     private double rating;
 
 
-    public PublicQuestion(String question, String answer, User sender, User receiver) {
-        super(sender, receiver);
+    public PublicQuestion(String question, String answer) {
+
         this.id = "q" + new UniqueIdGenerator().generateUniqueId();
         this.question = question;
         this.answer = answer;

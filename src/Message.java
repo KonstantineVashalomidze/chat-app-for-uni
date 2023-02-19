@@ -2,31 +2,24 @@ import java.util.Date;
 
 public class Message {
     private final String id;
-    private final User sender;
-    private final User receiver;
     private final Date timestamp;
+    private final String text;
 
-    public Message(User sender, User receiver){
+    public Message(String text){
         this.id = new UniqueIdGenerator().generateUniqueId();
-        this.sender = sender;
-        this.receiver = receiver;
         this.timestamp = new Date();
+        this.text = text;
     }
 
     public String getId() {
         return id;
     }
 
-    public User getSender() {
-        return sender;
-    }
-
-    public User getReceiver() {
-        return receiver;
-    }
-
     public Date getTimestamp() {
         return timestamp;
     }
 
+    public String getText() {
+        return text;
+    }
 }

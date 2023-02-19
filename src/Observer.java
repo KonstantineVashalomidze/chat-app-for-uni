@@ -1,5 +1,7 @@
+import java.util.List;
+
 public interface Observer {
-    void update(String email, String username, String password);
-    void update(String email, String username, String password, String profession);
+    void update(List<String> chatRoomHistory);
+
 
 }

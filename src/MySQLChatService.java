@@ -3,20 +3,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.sql.*;
 
-public class MySQLChatService implements ChatService, Observer{
+public class MySQLChatService implements ChatService{
 
     private static MySQLChatService mySQLChatServiceInstance;
+
+    private List<ChatRoom> allChatRoomThatExists = new ArrayList<>();
 
     private HashMap<User, String> users = new HashMap<>();
 
     private List<PublicQuestion> publicQuestions = new ArrayList<>();
 
-    private List<Message> messageHistory = new ArrayList<>();
 
     private MySQLChatService(){
 
     }
-
 
 
     @Override
@@ -41,7 +41,6 @@ public class MySQLChatService implements ChatService, Observer{
     public void ratePublicQuestions(PublicQuestion publicQuestion, double rating) {
         if (rating >= 5.0 || rating <= 0.0){
             System.out.println("rating shoulf be in range 0.0-5.0");
-            return;
         } else {
             for (PublicQuestion question : this.publicQuestions){
                 question.rate(rating);
@@ -88,7 +87,6 @@ public class MySQLChatService implements ChatService, Observer{
     }
 
 
-
     public static MySQLChatService getInstance(){
         if (mySQLChatServiceInstance == null){
             mySQLChatServiceInstance = new MySQLChatService();
@@ -97,17 +95,11 @@ public class MySQLChatService implements ChatService, Observer{
 
     }
 
-
-    @Override
-    public void update(String email, String username, String password) {
-        System.out.println("check user");
+    public List<ChatRoom> getAllChatRoomThatExists() {
+        return allChatRoomThatExists;
     }
 
-    @Override
-    public void update(String email, String username, String password, String role) {
-        registerUser(email, username, password, role);
+    public void addChatRoomToAllTheChatRoomsThatExists(ChatRoom chatRoom) {
+        this.allChatRoomThatExists.add(chatRoom);
     }
-
-
-
 }
