@@ -16,9 +16,12 @@ public class Main {
 
         user1.createChatRoom("vanadzori");
 
+
+
         user2.joinInChatRoom(user2.getChatRoomByName("vanadzori"));
+        user3.joinInChatRoom(user3.getChatRoomByName("vanadzori"));
 
-
+        user3.getChatRoomByName("vanadzori").printChatMembers();
 
 
 

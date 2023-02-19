@@ -9,30 +9,29 @@ public class ChatRoom{
 
     private final String name;
 
-    private final User admin;
-
-
-    ChatRoom(String name, User admin){
+    ChatRoom(String name){
         this.name = name;
-        this.admin = admin;
-        this.chatRoomHasUsers.add(admin);
     }
 
     public void addMessageToChatRoomHistory(User fromUser, Message message){
         this.chatRoomHistory.add(fromUser.getUsername() + ": " + message.getText());
     }
 
-    public void members(){
+    public void addUserInChatroom(User user){
+        this.chatRoomHasUsers.add(user);
+    }
+
+    public void removeFromChatRoom(User user){
+        this.chatRoomHasUsers.remove(user);
+    }
+
+    public void printChatMembers(){
+        System.out.println(this.name + " chat have users: ");
         for (User member : this.chatRoomHasUsers){
-            System.out.println(member.getUsername());
+            System.out.println("            " + member.getUsername());
         }
     }
 
-
-
-    public void addUserInChatRoom(User user){
-        this.chatRoomHasUsers.add(user);
-    }
 
 
 
@@ -45,4 +44,10 @@ public class ChatRoom{
         return this.chatRoomHasUsers;
     }
 
+    public User getAdmin() {
+        if (this.chatRoomHasUsers != null){
+            return this.chatRoomHasUsers.get(0);
+        }
+        return null;
+    }
 }
